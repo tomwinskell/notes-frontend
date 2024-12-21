@@ -70,16 +70,25 @@ Site not yet live, under construction
 - [Axios](https://axios-http.com/) - A promise-based HTTP client for the browser and Node.js.
 - [NestJS](https://nestjs.com/) - A progressive Node.js framework for building efficient and scalable server-side applications.
 - [Emotion](https://emotion.sh/docs/introduction) - A performant and flexible CSS-in-JS library for styling applications.
-- [Heroku Postgres](https://www.heroku.com/postgres) - A fully managed SQL database service provided by Heroku.
+- [Neon](https://neon.tech/docs/guides/nestjs) - A fully managed SQL database service.
 - Mobile-first workflow
 
-### What I learned
+### What I learned / tasks completed
 
 ## Dec 19
 - Installing NestJS and setting up the initial routes.
 - Using NestJS's built-in TypeORM to connect to a PostgreSQL database.
 - Tracking tasks and progress using Trello.
 - Branching a GitHub repository to work on a specific feature, then creating a pull request to merge the branches.
+
+## Dec 20
+- Creating an account with [Neon Database](https://neon.tech/) (Heroku no longer offers free tiers).
+- Creating .env file for database connection URL.
+- Connecting database to API backend using TypeORM integration with NestJS.
+- Created first API route with controller, service, entity and validation checks. Created controller functions for get and post methods on /user/ route.
+- Tested API using Postman extension for VSCode.
+- Amended frontend to test connection between backend and frontend. While testing discovered that the API backend data validation is working correctly.
+- Setup database migration using TypeORM. Used a combination or articles to set this up. All linked below. Conclusion, Prisma is potentially a better package for handling database functionality due to built in and easy to use database migration tooling.
 
 ### Continued development
 
@@ -94,6 +103,14 @@ Under construction.
 - [Trello](https://trello.com/) - To keep a record of tasks completed and tasks to be done. Trello is a project management tool that uses boards, lists, and cards to help individuals and teams organize tasks, collaborate on projects, and track progress visually.
 
 - [Choose an open source license](https://choosealicense.com/) - An open source license protects contributors and users. Businesses and savvy developers won’t touch a project without this protection.
+
+- [NestJS and PostgreSQL: A CRUD Tutorial](https://medium.com/simform-engineering/nestjs-and-postgresql-a-crud-tutorial-32aa78778752) - Build a robust and secure CRUD API with NestJS and PostgreSQL, using TypeORM to manage database operations.
+
+## Database migration
+
+- [Using TypeORM Migration in NestJS with Postgres Database](https://dev.to/amirfakour/using-typeorm-migration-in-nestjs-with-postgres-database-3c75)
+- [TypeORM docs on migration](https://orkhan.gitbook.io/typeorm/docs/migrations)
+- [How to Generate and Run a Migration Using TypeORM in NestJS](https://medium.com/@ryanmambou/how-to-generate-and-run-a-migration-using-typeorm-in-nestjs-e0e078baf128)
 
 ## Author
 
