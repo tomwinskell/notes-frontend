@@ -7,12 +7,13 @@ const container = css({
   alignItems: 'center',
   width: '100vw',
   height: '100vh',
+  padding: '1rem',
 });
 
-export default function App() {
-  return (
-    <div css={container}>
-      <Outlet />
-    </div>
-  );
-}
+const App = () => (
+  <div css={container}>
+    <Outlet />
+  </div>
+);
+
+export default App;

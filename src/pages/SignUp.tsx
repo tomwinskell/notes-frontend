@@ -32,8 +32,10 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   return (
     <div css={container}>
-      <Input onChange={(e) => setEmail(e.target.value)}></Input>
-      <Input onChange={(e) => setPassword(e.target.value)}></Input>
+      <h1>Create Your Account</h1>
+      <p>Sign up to start organizing your notes and boost your productivity.</p>
+      <Input label='Email Address' onChange={(e) => setEmail(e.target.value)} />
+      <Input label='Password' onChange={(e) => setPassword(e.target.value)} />
       <Button onClick={() => handleClick(email, password)}>Sign up</Button>
     </div>
   );
