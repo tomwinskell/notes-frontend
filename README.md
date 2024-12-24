@@ -90,6 +90,13 @@ Site not yet live, under construction
 - Amended frontend to test connection between backend and frontend. While testing discovered that the API backend data validation is working correctly.
 - Setup database migration using TypeORM. Used a combination or articles to set this up. All linked below. Conclusion, Prisma is potentially a better package for handling database functionality due to built in and easy to use database migration tooling.
 
+## Dec 23
+- Create new branch to build user sign up page.
+- Install React Router and setup code to allow frontend routing. Using React Router as a library not a framework.
+- Build button, input and logo components.
+- Create pages folder and signup page.
+- Create GlobalStyles file and inject CSS reset globally.
+
 ### Continued development
 
 Under construction.
