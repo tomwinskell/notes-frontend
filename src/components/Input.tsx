@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
+import { useId } from 'react';
 
 interface InputProps {
   label: string;
+  footnote?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: 'text';
 }
@@ -12,19 +14,32 @@ const labelStyle = css({
 });
 
 const inputStyle = css({
-  border: 'thin solid grey',
+  border: 'thin solid var(--neutral200)',
   borderRadius: '.5rem',
-});
-
-const inputPadding = css({
   padding: '.8rem',
 });
 
-const Input = ({ label, onChange, type = 'text' }: InputProps) => {
+const footnoteStyle = css({
+  color: 'grey',
+  fontSize: '.8rem',
+  display: 'flex',
+  alignItems: 'start',
+  gap: '0.5rem',
+  marginBlockStart: '.25rem'
+});
+
+const Input = ({ label, footnote, onChange, type = 'text' }: InputProps) => {
+  const id = useId();
   return (
     <div css={labelStyle}>
-      <label>{label}</label>
-      <input css={[inputStyle, inputPadding]} onChange={onChange} type={type} />
+      <label htmlFor={id}>{label}</label>
+      <input id={id} css={inputStyle} onChange={onChange} type={type} />
+      {footnote && (
+        <p css={footnoteStyle}>
+          <span>ⓘ</span>
+          {footnote}
+        </p>
+      )}
     </div>
   );
 };

@@ -111,6 +111,14 @@ Under construction.
 
 - [Choose an open source license](https://choosealicense.com/) - An open source license protects contributors and users. Businesses and savvy developers won’t touch a project without this protection.
 
+## Setup
+- [Neon Docs](https://neon.tech/docs/introduction)
+- [NestJS Docs](https://docs.nestjs.com/techniques/database)
+- [TypeORM Docs](https://typeorm.io/)
+
+## NestJS
+
+- [NestJS Tutorial](https://www.cbsofyalioglu.com/code/nestjs-tutorial-I/)
 - [NestJS and PostgreSQL: A CRUD Tutorial](https://medium.com/simform-engineering/nestjs-and-postgresql-a-crud-tutorial-32aa78778752) - Build a robust and secure CRUD API with NestJS and PostgreSQL, using TypeORM to manage database operations.
 
 ## Database migration

@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 const buttonStyle = css({
-  background: '#3b82f6',
+  background: 'var(--blue500)',
   color: 'white',
   padding: '.8rem',
   borderRadius: '0.5rem',
@@ -15,9 +15,6 @@ const buttonStyle = css({
   fontSize: '1rem',
   cursor: 'pointer',
   transition: 'background 0.2s ease',
-  '&:hover': {
-    background: '#2563eb',
-  },
 });
 
 const Button = ({ children, onClick, type = 'button' }: ButtonProps) => {
