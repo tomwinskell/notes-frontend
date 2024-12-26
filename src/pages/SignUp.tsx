@@ -5,6 +5,7 @@ import axios from 'axios';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Logo from '../components/Logo';
+import { fontPresets } from '../styles/fontPresets';
 
 const container = css({
   display: 'flex',
@@ -43,8 +44,8 @@ export default function SignUp() {
   return (
     <div css={container}>
       <Logo />
-      <h1 css={alignCenter}>Create Your Account</h1>
-      <p css={alignCenter}>
+      <h1 css={[alignCenter, fontPresets.heading]}>Create Your Account</h1>
+      <p css={[alignCenter, fontPresets.body]}>
         Sign up to start organizing your notes and boost your productivity.
       </p>
       <Input label="Email Address" onChange={(e) => setEmail(e.target.value)} />

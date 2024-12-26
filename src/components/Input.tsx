@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { useId } from 'react';
+import { fontPresets } from '../styles/fontPresets';
 
 interface InputProps {
   label: string;
@@ -25,14 +26,16 @@ const footnoteStyle = css({
   display: 'flex',
   alignItems: 'start',
   gap: '0.5rem',
-  marginBlockStart: '.25rem'
+  marginBlockStart: '.25rem',
 });
 
 const Input = ({ label, footnote, onChange, type = 'text' }: InputProps) => {
   const id = useId();
   return (
     <div css={labelStyle}>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} css={fontPresets.formLabel}>
+        {label}
+      </label>
       <input id={id} css={inputStyle} onChange={onChange} type={type} />
       {footnote && (
         <p css={footnoteStyle}>
