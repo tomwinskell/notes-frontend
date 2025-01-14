@@ -97,6 +97,10 @@ Site not yet live, under construction
 - Create pages folder and signup page.
 - Create GlobalStyles file and inject CSS reset globally.
 
+## Dec 26
+- Amend input component to include footnote. Add global color variables for theme. Add Inter Google font face globally accessible. Start setting up font presets.
+- Add font presets file and include in signup page.
+
 ### Continued development
 
 Under construction.

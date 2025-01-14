@@ -1,20 +1,18 @@
-import { css } from '@emotion/react';
-import { Outlet } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import SignUp from './pages/SignUp.tsx';
+import Home from './pages/Home.tsx';
+import Login from './pages/Login.tsx';
 
-const container = css({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100vw',
-  height: '100vh',
-  padding: '1rem',
-  background: 'var(--neutral100)'
-});
-
-const App = () => (
-  <div css={container}>
-    <Outlet />
-  </div>
-);
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;
