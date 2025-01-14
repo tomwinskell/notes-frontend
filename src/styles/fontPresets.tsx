@@ -21,5 +21,14 @@ export const fontPresets = {
     fontWeight: '500',
     lineHeight: '1.2em',
     color: 'var(--neutral950)',
+    textDecoration: 'none',
+  }),
+  formNote: css({
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '0.8rem',
+    fontWeight: '400',
+    lineHeight: '1.2em',
+    color: 'var(--neutral500)',
+    textDecoration: 'underline',
   }),
 };

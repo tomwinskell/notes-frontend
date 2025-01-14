@@ -2,16 +2,14 @@ import { css } from '@emotion/react';
 import { useId } from 'react';
 import { fontPresets } from '../styles/fontPresets';
 
-interface InputProps {
-  label: string;
-  footnote?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  type?: 'text';
-}
-
-const labelStyle = css({
+const container = css({
   display: 'flex',
   flexDirection: 'column',
+});
+const labelContainer = css({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
 });
 
 const inputStyle = css({
@@ -26,16 +24,33 @@ const footnoteStyle = css({
   display: 'flex',
   alignItems: 'start',
   gap: '0.5rem',
-  marginBlockStart: '.25rem',
+  marginStart: '.25rem',
 });
 
-const Input = ({ label, footnote, onChange, type = 'text' }: InputProps) => {
+interface InputProps {
+  label: string;
+  note?: React.ReactNode;
+  footnote?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: 'text';
+}
+
+const Input = ({
+  label,
+  note,
+  footnote,
+  onChange,
+  type = 'text',
+}: InputProps) => {
   const id = useId();
   return (
-    <div css={labelStyle}>
-      <label htmlFor={id} css={fontPresets.formLabel}>
-        {label}
-      </label>
+    <div css={container}>
+      <div css={[labelContainer]}>
+        <label htmlFor={id} css={fontPresets.formLabel}>
+          {label}
+        </label>
+        <span css={fontPresets.formNote}>{note}</span>
+      </div>
       <input id={id} css={inputStyle} onChange={onChange} type={type} />
       {footnote && (
         <p css={footnoteStyle}>
