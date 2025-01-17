@@ -3,21 +3,15 @@ import axios from 'axios';
 import UserForm from '../components/UserForm';
 import { NavLink } from 'react-router';
 
-function createUser(email: string, password: string) {
-  const obj = {
-    email,
-    password,
-  };
-  console.log(obj);
-  axios
-    .post('http://localhost:3000/user', obj)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+const createUser = async (email: string, password: string) => {
+  const obj = { email, password };
+  try {
+    const response = await axios.post('http://localhost:3000/user', obj);
+    console.log('User created:', response.data);
+  } catch (error) {
+    console.error('Error creating user:', error);
+  }
+};
 
 export default function SignUp() {
   return (
@@ -26,13 +20,13 @@ export default function SignUp() {
       formMessage="Sign up to start organizing your notes and boost your productivity"
       footnote="At least 8 characters"
       formButtonText="Sign up"
-      handleSubmit={(email: string, password: string) =>
+      submitFunction={(email: string, password: string) =>
         createUser(email, password)
       }
       formLink={
-        <p>
+        <>
           Already have an account? <NavLink to="/login">Login</NavLink>
-        </p>
+        </>
       }
     />
   );

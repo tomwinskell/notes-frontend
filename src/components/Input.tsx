@@ -12,25 +12,29 @@ const labelContainer = css({
   justifyContent: 'space-between',
 });
 
-const inputStyle = css({
-  border: 'thin solid var(--neutral200)',
-  borderRadius: '.5rem',
-  padding: '.8rem',
-});
+const inputStyle = (error?: string) =>
+  css({
+    border: error ? 'thin solid red' : 'thin solid var(--neutral200)',
+    borderRadius: '.5rem',
+    padding: '.8rem',
+  });
 
-const footnoteStyle = css({
-  color: 'grey',
-  fontSize: '.8rem',
-  display: 'flex',
-  alignItems: 'start',
-  gap: '0.5rem',
-  marginStart: '.25rem',
-});
+const footnoteStyle = (error?: string) =>
+  css({
+    color: error ? 'red' : 'grey',
+    fontSize: '.8rem',
+    display: 'flex',
+    alignItems: 'start',
+    gap: '0.5rem',
+    marginStart: '.25rem',
+  });
 
 interface InputProps {
   label: string;
   note?: React.ReactNode;
+  error?: string;
   footnote?: string;
+  onFocus: () => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: 'text';
 }
@@ -38,7 +42,9 @@ interface InputProps {
 const Input = ({
   label,
   note,
+  error,
   footnote,
+  onFocus,
   onChange,
   type = 'text',
 }: InputProps) => {
@@ -51,12 +57,25 @@ const Input = ({
         </label>
         <span css={fontPresets.formNote}>{note}</span>
       </div>
-      <input id={id} css={inputStyle} onChange={onChange} type={type} />
-      {footnote && (
-        <p css={footnoteStyle}>
+      <input
+        id={id}
+        css={inputStyle(error)}
+        onFocus={onFocus}
+        onChange={onChange}
+        type={type}
+      />
+      {error ? (
+        <p css={footnoteStyle(error)}>
           <span>ⓘ</span>
-          {footnote}
+          {error}
         </p>
+      ) : (
+        footnote && (
+          <p css={footnoteStyle()}>
+            <span>ⓘ</span>
+            {footnote}
+          </p>
+        )
       )}
     </div>
   );
