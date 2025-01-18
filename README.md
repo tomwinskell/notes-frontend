@@ -169,6 +169,21 @@ Site not yet live, under construction
 - Confirmed that login and signup routes and all error handling is working through manual testing.
 - TODO: figure out how testing works with Jest so that I can setup some automated testing for work completed so far.
 
+## Jan 17
+
+- **/auth/login (user login)**:
+
+  - auth.controller.ts calls authService.validateUser
+  - validateUser method validates user credentials against those held in database, returns userId and email
+  - auth.controller.ts then returns authService.generateTokens using the userId and email
+  - authService.generateTokens generates access and refresh tokens using jwtService
+  - the refreshToken is securely stored in the database and the accessToken is returned to the user to be used for authentication by the frontend React application
+
+- **/auth/refresh (frontend requests new accessToken)**:
+  - when the accessToken expires, axios will receive 401 access denied, this will trigger a request for new accessToken
+  - /auth/refresh in auth.controller.ts uses validateRefreshToken to determine authorization
+  - if authorized authService.generateTokens will issue a new accessToken to the frontend React application
+
 ### Continued development
 
 Under construction.
