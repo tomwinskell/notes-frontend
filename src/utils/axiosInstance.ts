@@ -1,13 +1,10 @@
-// src/utils/axiosInstance.ts
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const baseURL = 'http://localhost:3000';
+const { accessToken, login } = useAuth();
 
-export const createAxiosInstance = (
-  getAccessToken: () => string | null,
-  setAccessToken: (token: string) => void,
-  getUserId: () => string | null
-) => {
+export const createAxiosInstance = () => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     headers: {
@@ -18,9 +15,8 @@ export const createAxiosInstance = (
   // Request Interceptor: Attach the access token
   axiosInstance.interceptors.request.use(
     (config) => {
-      const token = getAccessToken();
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+      if (accessToken) {
+        config.headers['Authorization'] = accessToken;
       }
       return config;
     },
@@ -37,33 +33,27 @@ export const createAxiosInstance = (
       if (error.response?.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
 
-        const userId = getUserId();
-        if (userId) {
-          try {
-            // Send userId to refresh the token
-            const response = await axios.post(`${baseURL}/auth/refresh`, {
-              userId,
-            });
+        try {
+          // Send userId to refresh the token
+          const response = await axios.post(`${baseURL}/auth/refresh`, {
+            headers: { Authorization: accessToken },
+          });
 
-            const newAccessToken = response.data.accessToken;
+          const newAccessToken = response.headers['authorization'];
 
-            // Update the token in context
-            setAccessToken(newAccessToken);
+          // Update the token in context
+          login(newAccessToken);
 
-            // Retry the original request with the new token
-            originalRequest.headers['Authorization'] =
-              `Bearer ${newAccessToken}`;
-            return axiosInstance(originalRequest);
-          } catch (refreshError) {
-            console.error('Token refresh failed:', refreshError);
-            return Promise.reject(refreshError);
-          }
+          // Retry the original request with the new token
+          originalRequest.headers['Authorization'] = newAccessToken;
+          return axiosInstance(originalRequest);
+        } catch (refreshError) {
+          console.error('Token refresh failed:', refreshError);
+          return Promise.reject(refreshError);
         }
       }
-
       return Promise.reject(error);
     }
   );
-
   return axiosInstance;
 };

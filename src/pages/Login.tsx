@@ -1,10 +1,12 @@
 import axios from 'axios';
 import UserForm from '../components/UserForm';
-import { NavLink } from 'react-router';
+import { useNavigate, NavLink } from 'react-router';
 import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
   const { login } = useAuth();
+  let navigate = useNavigate();
+
   const loginUser = async (email: string, password: string) => {
     const obj = { email, password };
     try {
@@ -12,8 +14,8 @@ export default function Login() {
         'http://localhost:3000/auth/login',
         obj
       );
-      // console.log('Access granted:', response.data);
-      login(response.data.accessToken);
+      login(response.headers['authorization']);
+      navigate('/profile');
     } catch (error) {
       console.error('Access not authorized', error);
     }
